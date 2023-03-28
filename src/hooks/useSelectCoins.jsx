@@ -31,7 +31,7 @@ const useSelectCoins = (label,options) => {
             value={state}
             onChange={e=>setState(e.target.value)}
             >
-            <option value=''>Select</option>
+            <option value=''> - Select - </option>
             {
                 options?.map(opt=>(
 
@@ -46,7 +46,7 @@ const useSelectCoins = (label,options) => {
         )
     }
 
-    return [SelectCoins]
+    return [state, SelectCoins]
 }
 
 export default useSelectCoins

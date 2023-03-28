@@ -22,8 +22,8 @@ const InputSubmit = tw.input`
 
 const Form = () => {
 
-    const [SelectFiatCoins] = useSelectCoins('Select your Fiat Coin',fiatCoins);
-    const [SelectCryptoCoins] = useSelectCoins('Select your Crypto');
+    const [fiatCoin, SelectFiatCoins] = useSelectCoins('Select your Fiat Coin',fiatCoins);
+    const [crypto, SelectCryptoCoins] = useSelectCoins('Select your Crypto');
 
     
   return (
