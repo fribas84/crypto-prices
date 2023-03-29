@@ -16,7 +16,6 @@ const Container = tw.div `
   mx-auto
 `
 
-
 function App() {
   const [coins, setCoins] =  useState({})
   const [result, setResult] = useState({})
