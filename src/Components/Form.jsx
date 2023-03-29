@@ -21,7 +21,7 @@ const InputSubmit = tw.input`
     w-full
 `
 
-const Form = () => {
+const Form = ({setCoins}) => {
 
     const [cryptos, setCryptos] = useState([]);
     const [error, setError] = useState(false)
@@ -50,10 +50,14 @@ const Form = () => {
         e.preventDefault();
         if([fiatCoin, crypto].includes('')){
             setError(true);
-            setErrorText('You need to select both fields');
+            setErrorText('all fields are mandatory');
         }
         else{
             setError(false);
+            setCoins({
+                fiatCoin: fiatCoin,
+                crypto: crypto
+            })
         }
     }
     
