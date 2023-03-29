@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react';
 import tw from "tailwind-styled-components";
 import useSelectCoins from '../hooks/useSelectCoins';
 import { fiatCoins } from '../data/fiatCoins'; 
+import ErrorHandler from './ErrorHandler';
 
 const InputSubmit = tw.input`
     font-bold
@@ -23,6 +24,8 @@ const InputSubmit = tw.input`
 const Form = () => {
 
     const [cryptos, setCryptos] = useState([]);
+    const [error, setError] = useState(false)
+    const [errorText,setErrorText] = useState('');
     const [fiatCoin, SelectFiatCoins] = useSelectCoins('Select your Fiat Coin',fiatCoins);
     const [crypto, SelectCryptoCoins] = useSelectCoins('Select your Crypto',cryptos);
 
@@ -45,16 +48,27 @@ const Form = () => {
 
     const handleSubmit = (e) =>{
         e.preventDefault();
-        console.log('en handleSubmit');
+        if([fiatCoin, crypto].includes('')){
+            setError(true);
+            setErrorText('You need to select both fields');
+        }
+        else{
+            setError(false);
+        }
     }
     
   return (
+    <>
+    {error && (
+        <ErrorHandler errorText = {errorText}/>
+    )}
     <form
         onSubmit={handleSubmit}>
         <SelectFiatCoins />
         <SelectCryptoCoins />
         <InputSubmit  type='submit' value='Check Price' />
     </form>
+    </>
   )
 }
 
